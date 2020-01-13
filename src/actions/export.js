@@ -8,9 +8,6 @@ const readFile = promisify(fs.readFile);
 
 const utils = require('../utils.js');
 
-const dataPath = './record.yml';
-const destPath = './test.pdf';
-
 // https://stackoverflow.com/questions/17699599/node-js-check-if-file-exists/35008327#35008327
 const checkFileExists = s => new Promise(r => fs.access(s, fs.F_OK, e => r(!e)))
 
@@ -22,7 +19,7 @@ async function writePDF(contents, destPath) {
 	await browser.close();
 }
 
-async function doExport(template) {
+async function doExport({ template, sourceFile }) {
 	try {
 		// Get config dir
 		const configDir = await utils.findConfigDir();
@@ -48,12 +45,15 @@ async function doExport(template) {
 		nunjucks.configure(templateDir);
 		
 		// Create data object
-		const yamlData = await readFile(dataPath, 'utf8');
+		const yamlData = await readFile(sourceFile, 'utf8');
 		const data = yaml.safeLoad(yamlData);
 		data._config = config;
 
 		// JSON => HTML
 		const html = nunjucks.render(template + '.njk', data);
+
+		// Generate dest filepath
+		const destPath = path.join(path.dirname(sourceFile), path.basename(sourceFile, path.extname(sourceFile)) + '-' + template + '.pdf');
 
 		// HTML => PDF
 		// https://gutier.io/posts/programming-tutorial-nodejs-generate-pdf/
@@ -65,6 +65,6 @@ async function doExport(template) {
 	}
 }
 
-module.exports = function({ template }, options, logger) {
-	doExport(template);
+module.exports = function(args, options, logger) {
+	doExport(args);
 };

@@ -13,9 +13,11 @@ prog
 	.command('edit', 'Edit record')
 	.action(require('./actions/edit.js'))
 
-	// harpagon export <template>
+	// harpagon export <template> <sourceFile>
 	.command('export', 'Export record to PDF')
 	.argument('<template>', 'Template name', ['quote', 'invoice'])
+	// TODO: validate file existence here
+	.argument('<sourceFile>', 'Source filepath')
 	.action(require('./actions/export.js'))
 
 	// test
