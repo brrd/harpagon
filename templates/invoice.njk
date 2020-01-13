@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Harpagon Template</title>
+	<style>
+		{% include "./styles.css" %}
+	</style>
+</head>
+<body class="invoice">
+	{% include "./_header.njk" %}
+
+	<h1 class="invoice-number">Facture n° {{ invoice.id }}</h1>
+	<p class="invoice-date">{{ invoice.date }}</p>
+	<p class="invoice-title"><strong>Prestation&nbsp:</strong> {{ title }}</p>
+	<p>Payable à réception.</p>
+	<p class="invoice-delivery-date">Date d&rsquo;exécution&nbsp;: {{ invoice.deliveryDate }}</p>
+
+	<table class="items">
+		<thead>
+			<tr>
+				<th>Service</th>
+				<th>PU HT*</th>
+				<th>Quantit&eacute;</th>
+				<th>Prix HT*</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% set invoiceTotal = 0 %}
+			{% for item in items %}
+				<tr>
+					<td class="item-info">
+						<p class="item-name">{{ item.name }}</p>
+						{% if item.description %}
+							<p class="item-description">{{ item.description }}</p>
+						{% endif %}
+					</td>
+					<td class="item-unit-price">
+						{{ item.unitPrice }}&nbsp;&euro;
+					</td>
+					<td class="item-quantity">
+						{{ item.quantity }}
+					</td>
+					<td class="item-total-price">
+						{% set itemTotal = item.unitPrice * item.quantity %}
+						{% set invoiceTotal = invoiceTotal + itemTotal %}
+						{{ itemTotal }}&nbsp;&euro;
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3">Coût total de la prestation</td>
+				<td>{{ invoiceTotal }}&nbsp;&euro;</td>
+			</tr>
+		</tfoot>
+	</table>
+
+	{% if _config.user.bank %}
+		<p class="bank">
+			{{ _config.user.bank | striptags(true) | escape | nl2br }}
+		</p>
+	{% endif %}
+
+	{% if _config.footer %}
+		<p class="footer">
+			{{ _config.footer | striptags(true) | escape | nl2br }}
+		</p>
+	{% endif %}
+</body>
+</html>
