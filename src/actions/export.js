@@ -2,12 +2,17 @@ const yaml = require('js-yaml');
 const fs = require('fs');
 const nunjucks = require('nunjucks');
 const puppeteer = require('puppeteer');
-
+const path = require('path');
 const promisify = require('util').promisify;
 const readFile = promisify(fs.readFile);
 
-const dataPath = './demo/record.yml';
-const destPath = './demo/out/test.pdf';
+const utils = require('../utils.js');
+
+const dataPath = './record.yml';
+const destPath = './test.pdf';
+
+// https://stackoverflow.com/questions/17699599/node-js-check-if-file-exists/35008327#35008327
+const checkFileExists = s => new Promise(r => fs.access(s, fs.F_OK, e => r(!e)))
 
 async function writePDF(contents, destPath) {
 	const browser = await puppeteer.launch();
@@ -19,20 +24,36 @@ async function writePDF(contents, destPath) {
 
 async function doExport(template) {
 	try {
-		// YAML => JSON
+		// Get config dir
+		const configDir = await utils.findConfigDir();
+		if (!configDir) {
+			throw Error('Harpagon project not found.');
+		}
+
+		// Read config
+		const configPath = path.join(configDir, 'config.yml');
+		const yamlConfig = await readFile(configPath, 'utf8');
+		const config = yaml.safeLoad(yamlConfig);
+
+		// Find template
+		// Use .harpagon/templates/ in priority, otherwise use default templates/ dir
+		const userTemplatePath = path.join(configDir, 'templates', template + '.njk');
+		
+		const userTemplateExists = await checkFileExists(userTemplatePath)
+		const templateDir = userTemplateExists ? 
+			path.resolve(userTemplatePath, '..') :
+			path.join(require.main.filename, '../../templates');
+
+		// Set nunjucks temlates path
+		nunjucks.configure(templateDir);
+		
+		// Create data object
 		const yamlData = await readFile(dataPath, 'utf8');
 		const data = yaml.safeLoad(yamlData);
-
-		// Load config
-		const yamlConfig = await readFile('config.yml', 'utf8');
-		const config = yaml.safeLoad(yamlConfig);
 		data._config = config;
 
 		// JSON => HTML
-		const html = nunjucks.render(
-			'templates/invoice.njk',
-			data
-		);
+		const html = nunjucks.render(template + '.njk', data);
 
 		// HTML => PDF
 		// https://gutier.io/posts/programming-tutorial-nodejs-generate-pdf/
