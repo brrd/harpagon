@@ -17,6 +17,16 @@ prog
 	.command('export', 'Export record to PDF')
 	.argument('<template>', 'Template name', ['quote', 'invoice'])
 	.action(require('./actions/export.js'))
+
+	// test
+	// TODO: remove
+	.command('test', 'Dev test')
+	.action(function (args, options, logger) {
+		console.log(process.cwd());
+		const utils = require('./utils.js');
+		utils.findConfigDir().then(console.log)
+		
+	})
 ;
 
 prog.parse(process.argv);
