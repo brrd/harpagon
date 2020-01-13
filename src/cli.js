@@ -2,23 +2,21 @@
 const prog = require('caporal');
 const pkg = require('../package.json');
 
-const templateNames = ['quote', 'invoice'];
-
 prog
 	.version(pkg.version)
 
 	// harpagon new
 	.command('new', 'Create new record')
-	.action((args, options, logger) => { logger.log("action") })
+	.action(require('./actions/new.js'))
 
 	// harpagon edit
 	.command('edit', 'Edit record')
-	.action((args, options, logger) => { logger.log("action") })
+	.action(require('./actions/edit.js'))
 
 	// harpagon export <template>
 	.command('export', 'Export record to PDF')
-	.argument('<template>', 'Template name', templateNames)
-	.action((args, options, logger) => { logger.log("action") })
+	.argument('<template>', 'Template name', ['quote', 'invoice'])
+	.action(require('./actions/export.js'))
 ;
 
 prog.parse(process.argv);
