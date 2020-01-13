@@ -3,6 +3,9 @@ const fs = require('fs');
 const nunjucks = require('nunjucks');
 const puppeteer = require('puppeteer');
 
+const promisify = require('util').promisify;
+const readFile = promisify(fs.readFile);
+
 const dataPath = './demo/record.yml';
 const destPath = './demo/out/test.pdf';
 
@@ -14,14 +17,15 @@ async function writePDF(contents, destPath) {
 	await browser.close();
 }
 
-function doExport(template) {
+async function doExport(template) {
 	try {
 		// YAML => JSON
-		// TODO: utiliser async readfile
-		const data = yaml.safeLoad(fs.readFileSync(dataPath, 'utf8'));
+		const yamlData = await readFile(dataPath, 'utf8');
+		const data = yaml.safeLoad(yamlData);
 
 		// Load config
-		const config = yaml.safeLoad(fs.readFileSync('config.yml', 'utf8'));
+		const yamlConfig = await readFile('config.yml', 'utf8');
+		const config = yaml.safeLoad(yamlConfig);
 		data._config = config;
 
 		// JSON => HTML
@@ -32,7 +36,9 @@ function doExport(template) {
 
 		// HTML => PDF
 		// https://gutier.io/posts/programming-tutorial-nodejs-generate-pdf/
-		writePDF(html, destPath).then(() => console.log('done'));
+		await writePDF(html, destPath);
+		console.log("Export done");
+		
 	} catch (e) {
 		console.error(e);
 	}
