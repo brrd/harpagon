@@ -10,10 +10,6 @@ prog
 	.command('new', 'Create new record')
 	.action(require('./actions/new.js'))
 
-	// harpagon edit
-	.command('edit', 'Edit record')
-	.action(require('./actions/edit.js'))
-
 	// harpagon export <template> <sourceFile>
 	.command('export', 'Export record to PDF')
 	.argument('<template>', 'Template name', ['quote', 'invoice'])
