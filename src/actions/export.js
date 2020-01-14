@@ -24,9 +24,6 @@ async function writePDF(destPath, contents) {
 async function doExport({ template, sourceFile }, options) {
 	// Read config
 	const configDir = utils.getPath().configDir;
-	if (!configDir) {
-		throw Error('Harpagon project not found.');
-	}
 	const configPath = path.join(configDir, 'config.yml');
 	const yamlConfig = await readFile(configPath, 'utf8');
 	const config = yaml.safeLoad(yamlConfig);
