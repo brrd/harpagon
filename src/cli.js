@@ -16,6 +16,7 @@ prog
 	.argument('<template>', 'Template name', ['quote', 'invoice'])
 	// TODO: validate file existence here
 	.argument('<sourceFile>', 'Source filepath')
+	.option('--format <format>', 'Output format (default: pdf)', ['html', 'pdf'])
 	.action(require('./actions/export.js'))
 
 	// harpagon reset

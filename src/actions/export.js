@@ -5,13 +5,15 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 const promisify = require('util').promisify;
 const readFile = promisify(fs.readFile);
+const writeFile = promisify(fs.writeFile);
 
 const utils = require('../utils.js');
 
 // https://stackoverflow.com/questions/17699599/node-js-check-if-file-exists/35008327#35008327
 const checkFileExists = s => new Promise(r => fs.access(s, fs.F_OK, e => r(!e)))
 
-async function writePDF(contents, destPath) {
+// https://gutier.io/posts/programming-tutorial-nodejs-generate-pdf/
+async function writePDF(destPath, contents) {
 	const browser = await puppeteer.launch();
 	const page = await browser.newPage();
 	await page.setContent(contents);
@@ -19,7 +21,7 @@ async function writePDF(contents, destPath) {
 	await browser.close();
 }
 
-async function doExport({ template, sourceFile }) {
+async function doExport({ template, sourceFile }, options) {
 	try {
 		// Get config dir
 		const configDir = utils.getPath().configDir;
@@ -52,19 +54,24 @@ async function doExport({ template, sourceFile }) {
 		// JSON => HTML
 		const html = nunjucks.render(template + '.njk', data);
 
-		// Generate dest filepath
-		const destPath = path.join(path.dirname(sourceFile), path.basename(sourceFile, path.extname(sourceFile)) + '-' + template + '.pdf');
+		if (options.format && options.format.toLowerCase() === 'html') {
+			// Export HTML
+			const destPath = path.join(path.dirname(sourceFile), path.basename(sourceFile, path.extname(sourceFile)) + '-' + template + '.html');
+			await writeFile(destPath, html, 'utf8');
+			return;
+		} 
 
 		// HTML => PDF
-		// https://gutier.io/posts/programming-tutorial-nodejs-generate-pdf/
-		await writePDF(html, destPath);
-		console.log("Export done");
-		
-	} catch (e) {
+		const destPath = path.join(path.dirname(sourceFile), path.basename(sourceFile, path.extname(sourceFile)) + '-' + template + '.pdf');
+		await writePDF(destPath, html);
+	}
+	catch (e) {
 		console.error(e);
 	}
 }
 
 module.exports = function(args, options, logger) {
-	doExport(args);
+	doExport(args, options)
+		.then(() => console.log('Document was successfully exported.'))
+		.catch(console.error);;
 };
