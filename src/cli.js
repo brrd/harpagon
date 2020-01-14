@@ -21,17 +21,8 @@ prog
 	// harpagon reset
 	.command('reset', 'Delete current user config and reset to default')
 	.action(require('./actions/reset.js'))
-
-	// test
-	// TODO: remove
-	.command('test', 'Dev test')
-	.action(function (args, options, logger) {
-				
-	})
 ;
 
 utils.initConfigDir()
-	.then(() => {
-		prog.parse(process.argv);
-	})
+	.then(() => prog.parse(process.argv))
 	.catch(console.error);
