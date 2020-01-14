@@ -1,0 +1,23 @@
+title: 
+client:
+	id: 
+	address: |
+		
+	billingAddress: |
+		
+	additionalInformation: |
+		
+quote:
+	id: 
+	date:
+invoice: 
+	id: 
+	date:
+	deliveryDate:
+items: 
+	- name: 
+		description: 
+		unitPrice: 
+		quantity: 1
+comment: |
+	
