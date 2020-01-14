@@ -8,8 +8,12 @@ const appPath = path.join(require.main.filename, '../../');
 const homedir = require('os').homedir();
 const configDirPath = path.join(homedir, '.harpagon');
 
-function getConfigDir() {
-	return configDirPath;
+function getPath() {
+	return {
+		app: appPath, 
+		configDir: configDirPath,
+		record: path.join(configDirPath, 'record.yml')
+	};
 }
 
 async function initConfigDir({ force } = {}) {
@@ -21,6 +25,6 @@ async function initConfigDir({ force } = {}) {
 }
 
 module.exports = {
-	getConfigDir,
+	getPath,
 	initConfigDir
 };

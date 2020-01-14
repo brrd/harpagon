@@ -6,8 +6,9 @@ const pkg = require('../package.json');
 prog
 	.version(pkg.version)
 
-	// harpagon new
+	// harpagon new [filename]
 	.command('new', 'Create new record')
+	.argument('[filename]', 'Record filename (default: record.yml)')
 	.action(require('./actions/new.js'))
 
 	// harpagon export <template> <sourceFile>
