@@ -22,7 +22,7 @@ async function writePDF(contents, destPath) {
 async function doExport({ template, sourceFile }) {
 	try {
 		// Get config dir
-		const configDir = await utils.findConfigDir();
+		const configDir = await utils.getConfigDir();
 		if (!configDir) {
 			throw Error('Harpagon project not found.');
 		}
