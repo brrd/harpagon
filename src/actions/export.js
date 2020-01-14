@@ -22,25 +22,22 @@ async function writePDF(destPath, contents) {
 }
 
 async function doExport({ template, sourceFile }, options) {
-	// Get config dir
+	// Read config
 	const configDir = utils.getPath().configDir;
 	if (!configDir) {
 		throw Error('Harpagon project not found.');
 	}
-
-	// Read config
 	const configPath = path.join(configDir, 'config.yml');
 	const yamlConfig = await readFile(configPath, 'utf8');
 	const config = yaml.safeLoad(yamlConfig);
 
-	// Find template
-	// Use .harpagon/templates/ in priority, otherwise use default templates/ dir
+	// Use user templates in priority, otherwise use default/templates/
 	const userTemplatePath = path.join(configDir, 'templates', template + '.njk');
 	
 	const userTemplateExists = await checkFileExists(userTemplatePath)
 	const templateDir = userTemplateExists ? 
 		path.resolve(userTemplatePath, '..') :
-		path.join(require.main.filename, '../../templates');
+		path.join(utils.getPath().app, 'default/templates');
 
 	// Set nunjucks temlates path
 	nunjucks.configure(templateDir);
