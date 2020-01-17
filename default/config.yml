@@ -5,6 +5,7 @@ address: |
 bank: |
   RIB: XXX
   IBAN: YYY
-additionalInformation: |
-  Hello world! This is the footer...
-  and it is multiline
+quoteInformation: |
+  Informations complémentaires qui figurent à la fin du devis.
+invoiceInformation: |
+  Informations complémentaires qui figurent à la fin de la facture.

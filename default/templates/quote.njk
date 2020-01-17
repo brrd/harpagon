@@ -2,20 +2,17 @@
 <html lang="fr">
 <head>
 	<meta charset="UTF-8">
-	<title>Facture {{ invoice.id }}</title>
+	<title>Devis {{ quote.id }}</title>
 	<style>
 		{% include "./styles.css" %}
 	</style>
 </head>
-	<body class="invoice">
+	<body class="quote">
 		<div class="main-container">
 			{% include "./_header.njk" %}
 
 			<h1 class="main-title margin-top">
-				Facture 
-				{% if invoice.id %}
-					n° <span class="invoice-id">{{ invoice.id }}</span>
-				{% endif %}
+				Devis 
 			</h1>
 			
 			<table class="informations">
@@ -26,15 +23,11 @@
 					</tr>
 					<tr>
 						<td>Date d'émission</td>
-						<td>{{ invoice.date }}</td>
+						<td>{{ quote.date }}</td>
 					</tr>
 					<tr>
-						<td>Date de livraison</td>
-						<td>{{ invoice.deliveryDate }}</td>
-					</tr>
-					<tr>
-						<td>Payable à réception.</td>
-						<td></td>
+						<td>Numéro de devis</td>
+						<td>{{ quote.id }}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -43,9 +36,9 @@
 
 			{% include "./_bank.njk" %}
 
-			{% if _config.invoiceInformation %}
+			{% if _config.quoteInformation %}
 				<p class="additional-information margin-top">
-					{{ _config.invoiceInformation | safe | nl2br }}
+					{{ _config.quoteInformation | safe | nl2br }}
 				</p>
 			{% endif %}
 		</div>

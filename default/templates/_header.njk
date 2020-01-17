@@ -1,0 +1,24 @@
+<div class="header">
+	<div class="sender">
+		<p class="sender__name label">{{ _config.name | safe | nl2br }}</p>
+		<p class="sender__address">
+			{{ _config.address | safe | nl2br }}
+		</p>
+	</div>
+
+	<div class="client">
+		{% if client.address %}
+		<div class="client__address">
+			<p class="label">Livraison</p>
+			<p>{{ client.address | safe | nl2br }}</p>
+		</div>
+		{% endif %}
+
+		{% if client.billingAddress %}
+			<div class="client__billingAddress">
+			<p class="label">Facturation</p>
+			<p>{{ client.billingAddress | safe | nl2br }}</p>
+		{% endif %}
+			</div>
+	</div>
+</div>

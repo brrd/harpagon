@@ -1,0 +1,8 @@
+{% if _config.bank %}
+	<div class="bank-section margin-top">
+		<p class="label">Coordonnées bancaires</p>
+		<p class="bank">
+			{{ _config.bank | safe | nl2br }}
+		</p>
+	</div>
+{% endif %}
