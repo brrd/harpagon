@@ -98,7 +98,7 @@ p {
 }
 
 .items tbody tr:not(:last-child) {
-	border-bottom: 1px solid #90a4ae; 
+	border-bottom: 1px solid #bbb; 
 }
 
 .items thead tr {

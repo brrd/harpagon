@@ -36,7 +36,7 @@ async function writePDF(destPath, contents) {
 		displayHeaderFooter: true,
 		headerTemplate: '<div></div>',
 		footerTemplate: `
-			<div class='footer' style='text-align:center; font-size: 9px; color: #777; display: block; width: 100%;'>
+			<div class='footer' style='text-align:center; font-size: 8px; color: #777; display: block; width: 100%;'>
 				Page <span class='pageNumber'></span> / <span class='totalPages'></span>
 			</div>
 		`
