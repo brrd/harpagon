@@ -1,11 +1,5 @@
-name: John Doe
-address: |
-  1 Adress
-  123456 City
-bank: |
-  RIB: XXX
-  IBAN: YYY
-quoteInformation: |
-  Informations complémentaires qui figurent à la fin du devis.
-invoiceInformation: |
-  Informations complémentaires qui figurent à la fin de la facture.
+name:
+address:
+bank:
+quoteInformation:
+invoiceInformation:
