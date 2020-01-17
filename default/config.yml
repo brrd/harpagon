@@ -5,6 +5,6 @@ address: |
 bank: |
   RIB: XXX
   IBAN: YYY
-footer: |
+additionalInformation: |
   Hello world! This is the footer...
   and it is multiline

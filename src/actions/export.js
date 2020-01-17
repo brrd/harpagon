@@ -17,7 +17,23 @@ async function writePDF(destPath, contents) {
 	const browser = await puppeteer.launch();
 	const page = await browser.newPage();
 	await page.setContent(contents);
-	await page.pdf({ path: destPath, format: 'A4' });
+	await page.pdf({ 
+		path: destPath, 
+		format: 'A4',
+		margin: { 
+			top: 30, 
+			right: 20,
+			bottom: 50,
+			left: 20
+		},
+		displayHeaderFooter: true,
+		headerTemplate: '<div></div>',
+		footerTemplate: `
+			<div class='footer' style='text-align:center; font-size: 9px; color: #777; display: block; width: 100%;'>
+				Page <span class='pageNumber'></span> / <span class='totalPages'></span>
+			</div>
+		`
+	});
 	await browser.close();
 }
 

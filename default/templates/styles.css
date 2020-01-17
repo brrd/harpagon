@@ -7,9 +7,9 @@ html {
   -webkit-print-color-adjust: exact;
 }
 
-@page {
+/* @page {
 	margin: 0.5cm;
-}
+} */
 
 p {
 	margin: 0;
