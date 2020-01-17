@@ -60,7 +60,7 @@ async function doExport({ template, sourceFile }, options) {
 		path.join(utils.getPath().app, 'default/templates');
 
 	// Set nunjucks temlates path
-	nunjucks.configure(templateDir);
+	nunjucks.configure(templateDir, { throwOnUndefined: true });
 	
 	// Create data object
 	const yamlData = await readFile(sourceFile, 'utf8');
