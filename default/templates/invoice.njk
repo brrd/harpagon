@@ -18,22 +18,28 @@
 				</div>
 
 				<div class="client">
-					<p class="label">Adresse de livraison</p>
-
-					<p class="client__address">
-						{{ client.address | striptags(true) | escape | nl2br }}
-					</p>
+					{% if client.address %}
+					<div class="client__address">
+						<p class="label">Livraison</p>
+						<p>{{ client.address | safe | nl2br }}</p>
+					</div>
+					{% endif %}
 
 					{% if client.billingAddress %}
-						<p class="label">Adresse de facturation</p>
-						<p class="client__billing-address">
-							{{ client.billingAddress | striptags(true) | escape | nl2br }}
-						</p>
+						<div class="client__billingAddress">
+						<p class="label">Facturation</p>
+						<p>{{ client.billingAddress | safe | nl2br }}</p>
 					{% endif %}
+						</div>
 				</div>
 			</div>
 
-			<h1 class="main-title margin-top">Facture n<sup>o</sup> {{ invoice.id }}</h1>
+			<h1 class="main-title margin-top">
+				Facture 
+				{% if invoice.id %}
+					n° <span class="invoice-id">{{ invoice.id }}</span>
+				{% endif %}
+			</h1>
 			
 			<table class="informations">
 				<tbody>
@@ -69,19 +75,19 @@
 					{% set invoiceTotal = 0 %}
 					{% for item in items %}
 						<tr>
-							<td class="item-info">
+							<td>
 								<p class="item-name">{{ item.name }}</p>
 								{% if item.description %}
 									<p class="item-description">{{ item.description }}</p>
 								{% endif %}
 							</td>
-							<td class="item-unit-price">
+							<td>
 								{{ item.unitPrice }}&nbsp;&euro;
 							</td>
-							<td class="item-quantity">
+							<td>
 								{{ item.quantity }}
 							</td>
-							<td class="item-total-price">
+							<td>
 								{% set itemTotal = item.unitPrice * item.quantity %}
 								{% set invoiceTotal = invoiceTotal + itemTotal %}
 								{{ itemTotal }}&nbsp;&euro;
@@ -106,14 +112,14 @@
 				<div class="bank-section margin-top">
 					<p class="label">Coordonnées bancaires</p>
 					<p class="bank">
-						{{ _config.bank | striptags(true) | escape | nl2br }}
+						{{ _config.bank | safe | nl2br }}
 					</p>
 				</div>
 			{% endif %}
 
 			{% if _config.footer %}
 				<p class="footer margin-top">
-					{{ _config.footer | striptags(true) | escape | nl2br }}
+					{{ _config.footer | safe | nl2br }}
 				</p>
 			{% endif %}
 		</div>

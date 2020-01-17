@@ -32,7 +32,7 @@ p {
 
 .main-title {
 	font-weight: bold;
-	font-size: 28px;
+	font-size: 26px;
 	color: var(--color-main);
 }
 
@@ -54,6 +54,10 @@ p {
 	align-content: flex-start;
 }
 
+.client__billingAddress {
+	margin-top: 15px;
+}
+
 .informations {
 	line-height: inherit;
 	text-align: left;
@@ -70,10 +74,6 @@ p {
 	padding-right: 30px;
 }
 
-.invoice-info p {
-	margin: 0;
-}
-
 .items {
 	width: 100%;
 	line-height: inherit;
@@ -87,22 +87,6 @@ p {
 	vertical-align: top;
 }
 
-.items tbody tr:not(:last-child) {
-	border-bottom: 1px solid #90a4ae; 
-}
-
-.items thead tr {
-	border-bottom: 4px solid var(--color-main);
-}
-
-.items tfoot {
-	font-size: 16px;
-}
-
-.items tfoot td:not(:first-child) {
-	border-top: 4px solid var(--color-main);
-}
-
 .items th:not(:last-child),
 .items td:not(:last-child) {
 	padding-right: 40px;
@@ -113,8 +97,24 @@ p {
 	text-align: right;
 }
 
+.items tbody tr:not(:last-child) {
+	border-bottom: 1px solid #90a4ae; 
+}
+
+.items thead tr {
+	border-bottom: 4px solid var(--color-main);
+}
+
+.items tfoot {
+	font-size: 15px;
+}
+
+.items tfoot td:not(:first-child) {
+	border-top: 4px solid var(--color-main);
+}
+
 .item-description {
-	font-size: 12px;
+	font-size: 13px;
 	font-style: italic;
 	line-height: 15px;
 	margin-top: 3px;
