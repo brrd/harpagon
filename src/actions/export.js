@@ -9,8 +9,15 @@ const writeFile = promisify(fs.writeFile);
 
 const utils = require('../utils.js');
 
-// https://stackoverflow.com/questions/17699599/node-js-check-if-file-exists/35008327#35008327
+// https://stackoverflow.com/a/35008327
 const checkFileExists = s => new Promise(r => fs.access(s, fs.F_OK, e => r(!e)))
+
+// https://stackoverflow.com/a/16637170
+function num2Fr(num) {
+	var parts = num.toString().split(".");
+	parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+	return parts.join(",");
+}
 
 // https://gutier.io/posts/programming-tutorial-nodejs-generate-pdf/
 async function writePDF(destPath, contents) {
@@ -59,6 +66,20 @@ async function doExport({ template, sourceFile }, options) {
 	const yamlData = await readFile(sourceFile, 'utf8');
 	const data = yaml.safeLoad(yamlData);
 	data._config = config;
+
+	// Compute prices and total
+	// NOTE: French numbers used : 1 234,56
+	let total = 0
+	data.items.forEach((item) => {
+		const unitPriceInt = Number(String(item.unitPrice).replace(' ', '').replace(',', '.'));
+		const itemTotal = unitPriceInt * item.quantity;
+		if (unitPriceInt === NaN) throw Error('unitPrice is NaN');		
+		if (itemTotal === NaN) throw Error('itemTotal is NaN');
+		total += itemTotal;
+		item.unitPrice = num2Fr(unitPriceInt);
+		item.total = num2Fr(itemTotal)
+	});
+	data.total = num2Fr(total);
 
 	// JSON => HTML
 	const html = nunjucks.render(template + '.njk', data);

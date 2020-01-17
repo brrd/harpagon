@@ -72,7 +72,6 @@
 					</tr>
 				</thead>
 				<tbody>
-					{% set invoiceTotal = 0 %}
 					{% for item in items %}
 						<tr>
 							<td>
@@ -81,16 +80,14 @@
 									<p class="item-description">{{ item.description }}</p>
 								{% endif %}
 							</td>
-							<td>
+							<td class="number">
 								{{ item.unitPrice }}&nbsp;&euro;
 							</td>
-							<td>
+							<td class="number">
 								{{ item.quantity }}
 							</td>
-							<td>
-								{% set itemTotal = item.unitPrice * item.quantity %}
-								{% set invoiceTotal = invoiceTotal + itemTotal %}
-								{{ itemTotal }}&nbsp;&euro;
+							<td class="number">
+								{{ item.total }}&nbsp;&euro;
 							</td>
 						</tr>
 					{% endfor %}
@@ -102,7 +99,7 @@
 							<p class="color">Total&nbsp;HT*</p>
 						</td>
 						<td>
-							<p class="total">{{ invoiceTotal }}&nbsp;&euro;</p>
+							<p class="total number">{{ total }}&nbsp;&euro;</p>
 						</td>
 					</tr>
 				</tfoot>

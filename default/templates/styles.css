@@ -7,16 +7,16 @@ html {
   -webkit-print-color-adjust: exact;
 }
 
-/* @page {
-	margin: 0.5cm;
-} */
-
 p {
 	margin: 0;
 }
 
 .margin-top {
 	margin-top: 40px;
+}
+
+.number {
+	white-space: nowrap;
 }
 
 .main-container {
