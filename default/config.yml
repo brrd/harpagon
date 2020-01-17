@@ -1,11 +1,10 @@
-user:
-  name: Jean Dupont
-  address: |
-    16 rue Bidule
-    33800 Bordeaux
-  bank: |
-    RIB: XXX
-    IBAN: YYY
+name: John Doe
+address: |
+  1 Adress
+  123456 City
+bank: |
+  RIB: XXX
+  IBAN: YYY
 footer: |
   Hello world! This is the footer...
   and it is multiline

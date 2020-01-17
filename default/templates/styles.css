@@ -1,0 +1,127 @@
+:root {
+	--color-main: #FF4848;
+	--color-grey-text: #777;
+}
+
+html {
+  -webkit-print-color-adjust: exact;
+}
+
+@page {
+	margin: 0.5cm;
+}
+
+p {
+	margin: 0;
+}
+
+.margin-top {
+	margin-top: 40px;
+}
+
+.main-container {
+	display: block;
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 30px;
+	font-size: 13px;
+	line-height: 18px;
+	font-family: 'Open Sans', 'Montserrat', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+	color: var(--color-grey-text);
+}
+
+.main-title {
+	font-weight: bold;
+	font-size: 28px;
+	color: var(--color-main);
+}
+
+.label {
+	font-weight: bold;
+	color: #000;
+}
+
+.color {
+	font-weight: bold;
+	color: var(--color-main);
+	text-transform: uppercase;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+	align-content: flex-start;
+}
+
+.informations {
+	line-height: inherit;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+.informations td {
+	padding: 2px 0;
+}
+
+.informations td:first-child {
+	color: #000;
+	font-weight: bold;
+	padding-right: 30px;
+}
+
+.invoice-info p {
+	margin: 0;
+}
+
+.items {
+	width: 100%;
+	line-height: inherit;
+	text-align: left;
+	border-collapse: collapse;
+	color: #000;
+}
+
+.items th, .items td {
+	padding: 15px 0;
+	vertical-align: top;
+}
+
+.items tbody tr:not(:last-child) {
+	border-bottom: 1px solid #90a4ae; 
+}
+
+.items thead tr {
+	border-bottom: 4px solid var(--color-main);
+}
+
+.items tfoot {
+	font-size: 16px;
+}
+
+.items tfoot td:not(:first-child) {
+	border-top: 4px solid var(--color-main);
+}
+
+.items th:not(:last-child),
+.items td:not(:last-child) {
+	padding-right: 40px;
+}
+
+.items th:last-child,
+.items td:last-child {
+	text-align: right;
+}
+
+.item-description {
+	font-size: 12px;
+	font-style: italic;
+	line-height: 15px;
+	margin-top: 3px;
+	color: var(--color-grey-text);
+}
+
+.total {
+	color: #000;
+	font-weight: bold;
+}
