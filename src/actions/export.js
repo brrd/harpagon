@@ -29,9 +29,9 @@ async function writePDF(destPath, contents) {
 		format: 'A4',
 		margin: { 
 			top: 30, 
-			right: 20,
+			right: 40,
 			bottom: 50,
-			left: 20
+			left: 40
 		},
 		displayHeaderFooter: true,
 		headerTemplate: '<div></div>',

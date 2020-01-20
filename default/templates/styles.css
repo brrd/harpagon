@@ -23,7 +23,6 @@ p {
 	display: block;
 	max-width: 800px;
 	margin: 0 auto;
-	padding: 30px;
 	font-size: 13px;
 	line-height: 18px;
 	font-family: 'Open Sans', 'Montserrat', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
@@ -124,4 +123,14 @@ p {
 .total {
 	color: #000;
 	font-weight: bold;
+}
+
+.mentions {
+	font-size: 12px;
+}
+
+.signature {
+	margin: 40px 0 40px 400px;
+	padding: 10px 10px 100px 10px;
+	border: 1px solid #bbb; 
 }
