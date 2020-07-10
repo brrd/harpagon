@@ -42,7 +42,11 @@
 				Signature du commanditaire précédée de la date et de la mention « Bon pour accord »
 			</div>
 
-			{% if _config.quoteInformation %}
+			{% if quote.information %}
+				<p class="additional-information margin-top">
+					{{ quote.information | safe | nl2br }}
+				</p>
+			{% elif _config.quoteInformation %}
 				<p class="additional-information margin-top">
 					{{ _config.quoteInformation | safe | nl2br }}
 				</p>
