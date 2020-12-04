@@ -28,10 +28,12 @@
 						<td>Date d'émission</td>
 						<td>{{ invoice.date }}</td>
 					</tr>
-					<tr>
-						<td>Date de livraison</td>
-						<td>{{ invoice.deliveryDate }}</td>
-					</tr>
+					{% if invoice.deliveryDate %}
+						<tr>
+							<td>Date de livraison</td>
+							<td>{{ invoice.deliveryDate }}</td>
+						</tr>
+					{% endif %}
 					<tr>
 						<td>Payable à réception.</td>
 						<td></td>
