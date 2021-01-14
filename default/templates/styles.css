@@ -125,6 +125,10 @@ p {
 	font-weight: bold;
 }
 
+.delivery .delivery-hidden {
+	display: none;
+}
+
 .mentions {
 	font-size: 12px;
 }

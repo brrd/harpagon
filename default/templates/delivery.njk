@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Bon de livraison</title>
+	<style>
+		{% include "./styles.css" %}
+	</style>
+</head>
+	<body class="delivery">
+		<div class="main-container">
+			{% include "./_header.njk" %}
+
+			<h1 class="main-title margin-top">
+				Bon de livraison
+			</h1>
+			
+			<table class="informations">
+				<tbody>
+					<tr>
+						<td>Prestation</td>
+						<td>{{ title }}</td>
+					</tr>
+					{% if quote.id %}
+						<tr>
+							<td>Numéro de devis</td>
+							<td>{{ quote.id }}</td>
+						</tr>
+					{% endif %}
+					{% if invoice.deliveryDate %}
+						<tr>
+							<td>Date de livraison</td>
+							<td>{{ invoice.deliveryDate }}</td>
+						</tr>
+					{% endif %}
+				</tbody>
+			</table>
+
+			{% include "./_items.njk" %}
+
+			<div class="signature margin-top">
+				Date, nom et signature du réceptionnaire
+			</div>
+		</div>
+	</body>
+</html>

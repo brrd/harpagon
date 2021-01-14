@@ -13,7 +13,7 @@ prog
 
 	// harpagon export <template> <sourceFile>
 	.command('export', 'Export record to PDF')
-	.argument('<template>', 'Template name', ['quote', 'invoice'])
+	.argument('<template>', 'Template name', ['quote', 'invoice', 'delivery'])
 	.argument('<sourceFile>', 'Source filepath')
 	.option('--format <format>', 'Output format (default: pdf)', ['html', 'pdf'])
 	.action(require('./actions/export.js'))

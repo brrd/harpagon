@@ -2,9 +2,9 @@
 	<thead class="color">
 		<tr>
 			<th>Description</th>
-			<th>PU&nbsp;HT*</th>
+			<th class="delivery-hidden">PU&nbsp;HT*</th>
 			<th>Quantit&eacute;</th>
-			<th>Prix&nbsp;HT*</th>
+			<th class="delivery-hidden">Prix&nbsp;HT*</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -16,19 +16,19 @@
 						<p class="item-description">{{ item.description | safe | nl2br }}</p>
 					{% endif %}
 				</td>
-				<td class="number">
+				<td class="number delivery-hidden">
 					{{ item.unitPrice }}&nbsp;&euro;
 				</td>
 				<td class="number">
 					{{ item.quantity }}
 				</td>
-				<td class="number">
+				<td class="number delivery-hidden">
 					{{ item.total }}&nbsp;&euro;
 				</td>
 			</tr>
 		{% endfor %}
 	</tbody>
-	<tfoot>
+	<tfoot class="delivery-hidden">
 		<tr>
 			<td colspan="2"></td>
 			<td>
