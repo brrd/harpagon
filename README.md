@@ -1,3 +1,5 @@
+![Harpagon](harpagon.png)
+
 # Harpagon
 
 > Simple command-line invoicing tool
