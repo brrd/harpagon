@@ -24,6 +24,12 @@
 						<td>Prestation</td>
 						<td>{{ title }}</td>
 					</tr>
+					{% if quote.id %}
+						<tr>
+							<td>Numéro de devis</td>
+							<td>{{ quote.id }}</td>
+						</tr>
+					{% endif %}
 					<tr>
 						<td>Date d'émission</td>
 						<td>{{ invoice.date }}</td>
