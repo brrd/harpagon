@@ -13,7 +13,7 @@
 		{% for item in items %}
 			<tr>
 				<td>
-					<p class="item-name">{{ item.name }}</p>
+					<p class="item-name">{{ item.name | safe }}</p>
 					{% if item.description %}
 						<p class="item-description">{{ item.description | safe | nl2br }}</p>
 					{% endif %}

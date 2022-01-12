@@ -19,7 +19,7 @@
 				<tbody>
 					<tr>
 						<td>Prestation</td>
-						<td>{{ title }}</td>
+						<td>{{ title | safe }}</td>
 					</tr>
 					{% if quote.id %}
 						<tr>
