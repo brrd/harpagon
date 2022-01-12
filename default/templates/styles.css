@@ -79,6 +79,7 @@ p {
   text-align: left;
   border-collapse: collapse;
   color: #000;
+  margin-bottom: 20px;
 }
 
 .items th, .items td {
@@ -96,20 +97,29 @@ p {
   text-align: right;
 }
 
-.items tbody tr:not(:last-child) {
-  border-bottom: 1px solid #bbb;
+.items tbody tr:not(:first-child):not(.foot) {
+  border-top: 1px solid #bbb;
 }
 
 .items thead tr {
   border-bottom: 4px solid var(--color-main);
 }
 
-.items tfoot {
+.items tfoot, .items .extax-line {
   font-size: 15px;
 }
 
-.items tfoot td:not(:first-child) {
+.items tfoot td:not(:first-child), .items .extax-line td:not(:first-child) {
   border-top: 4px solid var(--color-main);
+}
+
+.foot td {
+  text-transform: uppercase;
+  padding: 15px 0 5px 0;
+}
+
+.foot + .foot td {
+  padding-top: 0;
 }
 
 .item-description {

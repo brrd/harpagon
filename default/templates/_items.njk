@@ -35,9 +35,7 @@
 				</td>
 			</tr>
 		{% endfor %}
-	</tbody>
-	<tfoot class="delivery-hidden">
-		<tr>
+		<tr class="foot extax-line delivery-hidden">
 			<td colspan="3"></td>
 			<td colspan="2">
 				<p class="color">Total&nbsp;HT</p>
@@ -46,14 +44,23 @@
 				<p class="total number">{{ total.extax }}&nbsp;&euro;</p>
 			</td>
 		</tr>
-		<tr>
+		<tr class="foot tax-line delivery-hidden">
 			<td colspan="3"></td>
 			<td colspan="2">
-				<p class="color">Total&nbsp;TTC</p>
+				<p>TVA</p>
 			</td>
 			<td>
-				<p class="total number">{{ total.taxIncluded }}&nbsp;&euro;</p>
+				<p class="number">{{ total.tax }}&nbsp;&euro;</p>
 			</td>
 		</tr>
-	</tfoot>
+		<tr class="foot total-line delivery-hidden">
+			<td colspan="3"></td>
+			<td colspan="2">
+				<p>Total&nbsp;TTC</p>
+			</td>
+			<td>
+				<p class="number">{{ total.taxIncluded }}&nbsp;&euro;</p>
+			</td>
+		</tr>
+	</tbody>
 </table>
