@@ -130,6 +130,10 @@ p {
   color: var(--color-grey-text);
 }
 
+.item-description i, .item-description em {
+  font-style: normal;
+}
+
 .total {
   color: #000;
   font-weight: bold;
