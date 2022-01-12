@@ -1,6 +1,6 @@
 :root {
-	--color-main: #FF4848;
-	--color-grey-text: #777;
+  --color-main: #FF4848;
+  --color-grey-text: #777;
 }
 
 html {
@@ -8,133 +8,133 @@ html {
 }
 
 p {
-	margin: 0;
+  margin: 0;
 }
 
 .margin-top {
-	margin-top: 40px;
+  margin-top: 40px;
 }
 
 .number {
-	white-space: nowrap;
+  white-space: nowrap;
 }
 
 .main-container {
-	display: block;
-	max-width: 800px;
-	margin: 0 auto;
-	font-size: 13px;
-	line-height: 18px;
-	font-family: 'Open Sans', 'Montserrat', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-	color: var(--color-grey-text);
+  display: block;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 13px;
+  line-height: 18px;
+  font-family: 'Open Sans', 'Montserrat', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+  color: var(--color-grey-text);
 }
 
 .main-title {
-	font-weight: bold;
-	font-size: 26px;
-	color: var(--color-main);
+  font-weight: bold;
+  font-size: 26px;
+  color: var(--color-main);
 }
 
 .label {
-	font-weight: bold;
-	color: #000;
+  font-weight: bold;
+  color: #000;
 }
 
 .color {
-	font-weight: bold;
-	color: var(--color-main);
-	text-transform: uppercase;
+  font-weight: bold;
+  color: var(--color-main);
+  text-transform: uppercase;
 }
 
 .header {
-	display: flex;
-	justify-content: space-between;
-	align-items: stretch;
-	align-content: flex-start;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  align-content: flex-start;
 }
 
 .client__billingAddress {
-	margin-top: 15px;
+  margin-top: 15px;
 }
 
 .informations {
-	line-height: inherit;
-	text-align: left;
-	border-collapse: collapse;
+  line-height: inherit;
+  text-align: left;
+  border-collapse: collapse;
 }
 
 .informations td {
-	padding: 2px 0;
+  padding: 2px 0;
 }
 
 .informations td:first-child {
-	color: #000;
-	font-weight: bold;
-	padding-right: 30px;
+  color: #000;
+  font-weight: bold;
+  padding-right: 30px;
 }
 
 .items {
-	width: 100%;
-	line-height: inherit;
-	text-align: left;
-	border-collapse: collapse;
-	color: #000;
+  width: 100%;
+  line-height: inherit;
+  text-align: left;
+  border-collapse: collapse;
+  color: #000;
 }
 
 .items th, .items td {
-	padding: 15px 0;
-	vertical-align: top;
+  padding: 15px 0;
+  vertical-align: top;
 }
 
 .items th:not(:last-child),
 .items td:not(:last-child) {
-	padding-right: 40px;
+  padding-right: 40px;
 }
 
 .items th:last-child,
 .items td:last-child {
-	text-align: right;
+  text-align: right;
 }
 
 .items tbody tr:not(:last-child) {
-	border-bottom: 1px solid #bbb; 
+  border-bottom: 1px solid #bbb;
 }
 
 .items thead tr {
-	border-bottom: 4px solid var(--color-main);
+  border-bottom: 4px solid var(--color-main);
 }
 
 .items tfoot {
-	font-size: 15px;
+  font-size: 15px;
 }
 
 .items tfoot td:not(:first-child) {
-	border-top: 4px solid var(--color-main);
+  border-top: 4px solid var(--color-main);
 }
 
 .item-description {
-	font-size: 13px;
-	font-style: italic;
-	line-height: 15px;
-	margin-top: 3px;
-	color: var(--color-grey-text);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 15px;
+  margin-top: 3px;
+  color: var(--color-grey-text);
 }
 
 .total {
-	color: #000;
-	font-weight: bold;
+  color: #000;
+  font-weight: bold;
 }
 
 .delivery .delivery-hidden {
-	display: none;
+  display: none;
 }
 
 .mentions {
-	font-size: 12px;
+  font-size: 12px;
 }
 
 .signature {
-	margin: 40px 0 40px 400px;
-	padding: 10px 10px 100px 10px;
-	border: 1px solid #bbb; 
+  margin: 40px 0 40px 400px;
+  padding: 10px 10px 100px 10px;
+  border: 1px solid #bbb;
 }
