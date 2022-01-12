@@ -82,8 +82,9 @@ async function doExport({ template, sourceFile }, options) {
   data.items.forEach((item) => {
     const unitPriceInt = Number(String(item.unitPrice).replace(' ', '').replace(',', '.'));
     const itemExtax = unitPriceInt * item.quantity;
-    const itemTax = item.tax ? item.tax / 100 : 0;
-    const itemTotalWithTax = itemExtax * (1 + itemTax);
+    const itemTaxFactor = item.tax ? item.tax / 100 : 0;
+    const itemTax = itemExtax * itemTaxFactor;
+    const itemTotalWithTax = itemExtax + itemTax;
 
     if (unitPriceInt === NaN) throw Error('unitPrice is NaN');
     if (itemExtax === NaN) throw Error('itemExtax is NaN');
@@ -94,7 +95,7 @@ async function doExport({ template, sourceFile }, options) {
 
     item.unitPrice = num2Fr(unitPriceInt);
     item.extax = num2Fr(itemExtax);
-    item.taxStr = itemTax && itemTax > 0 ? String(itemTax * 100) + "%" : "-";
+    item.taxStr = item.tax && item.tax > 0 ? String(item.tax) + "%" : "-";
     item.totalWithTax = num2Fr(itemTotalWithTax);
   });
 
