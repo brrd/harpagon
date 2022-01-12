@@ -2,9 +2,11 @@
 	<thead class="color">
 		<tr>
 			<th>Description</th>
-			<th class="delivery-hidden">PU&nbsp;HT*</th>
-			<th>Quantit&eacute;</th>
-			<th class="delivery-hidden">Prix&nbsp;HT*</th>
+			<th class="delivery-hidden">PU&nbsp;HT</th>
+			<th>Qt&eacute;</th>
+			<th class="delivery-hidden">Prix&nbsp;HT</th>
+			<th class="delivery-hidden">TVA</th>
+			<th class="delivery-hidden">Prix&nbsp;TTC</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -23,19 +25,34 @@
 					{{ item.quantity }}
 				</td>
 				<td class="number delivery-hidden">
-					{{ item.total }}&nbsp;&euro;
+					{{ item.extax }}&nbsp;&euro;
+				</td>
+				<td class="number delivery-hidden">
+					{{ item.taxStr }}
+				</td>
+				<td class="number delivery-hidden">
+					{{ item.totalWithTax }}&nbsp;&euro;
 				</td>
 			</tr>
 		{% endfor %}
 	</tbody>
 	<tfoot class="delivery-hidden">
 		<tr>
-			<td colspan="2"></td>
-			<td>
-				<p class="color">Total&nbsp;HT*</p>
+			<td colspan="3"></td>
+			<td colspan="2">
+				<p class="color">Total&nbsp;HT</p>
 			</td>
 			<td>
-				<p class="total number">{{ total }}&nbsp;&euro;</p>
+				<p class="total number">{{ total.extax }}&nbsp;&euro;</p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3"></td>
+			<td colspan="2">
+				<p class="color">Total&nbsp;TTC</p>
+			</td>
+			<td>
+				<p class="total number">{{ total.taxIncluded }}&nbsp;&euro;</p>
 			</td>
 		</tr>
 	</tfoot>

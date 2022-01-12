@@ -1,21 +1,21 @@
-title: 
+title:
 client:
-  id: 
+  id:
   address: |
-    
+
   billingAddress: |
-    
+
 quote:
-  id: 
+  id:
   date:
-invoice: 
-  id: 
+invoice:
+  id:
   date:
   deliveryDate:
-items: 
-  - name: 
-    description: 
-    unitPrice: 
+items:
+  - name:
+    description:
+    unitPrice:
     quantity: 1
+    tax: 0
 comment: |
-  

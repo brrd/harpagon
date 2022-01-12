@@ -69,17 +69,33 @@ async function doExport({ template, sourceFile }, options) {
 
   // Compute prices and total
   // NOTE: French numbers used : 1 234,56
-  let total = 0
+  let total = {
+    extax: 0,
+    tax: 0,
+    taxIncluded: 0
+  };
+
   data.items.forEach((item) => {
     const unitPriceInt = Number(String(item.unitPrice).replace(' ', '').replace(',', '.'));
-    const itemTotal = unitPriceInt * item.quantity;
+    const itemExtax = unitPriceInt * item.quantity;
+    const itemTax = item.tax ? item.tax / 100 : 0;
+    const itemTotalWithTax = itemExtax * (1 + itemTax);
+
     if (unitPriceInt === NaN) throw Error('unitPrice is NaN');
-    if (itemTotal === NaN) throw Error('itemTotal is NaN');
-    total += itemTotal;
+    if (itemExtax === NaN) throw Error('itemExtax is NaN');
+
+    total.extax += itemExtax;
+    total.tax += itemTax;
+    total.taxIncluded += itemTotalWithTax;
+
     item.unitPrice = num2Fr(unitPriceInt);
-    item.total = num2Fr(itemTotal)
+    item.extax = num2Fr(itemExtax);
+    item.taxStr = itemTax && itemTax > 0 ? String(itemTax * 100) + "%" : "-";
+    item.totalWithTax = num2Fr(itemTotalWithTax);
   });
-  data.total = num2Fr(total);
+
+  data.total = {};
+  Object.keys(total).forEach((key) => data.total[key] = num2Fr(total[key]));
 
   // JSON => HTML
   const html = nunjucks.render(template + '.njk', data);

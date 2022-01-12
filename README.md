@@ -6,7 +6,7 @@
 
 ## Why?
 
-I wrote this to generate PDF quotes, delivery orders and invoices for freelance activity. It currently matches my own specific needs (french language, "auto-entrepreneur" status, no VAT...) but this can be easilly changed to fit to your needs.
+I wrote this to generate PDF quotes, delivery orders and invoices for freelance activity. It currently matches my own specific needs (french language, "auto-entrepreneur" status...) but this can be easilly changed to fit to your needs.
 
 ## Install
 
