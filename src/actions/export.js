@@ -14,8 +14,12 @@ const checkFileExists = s => new Promise(r => fs.access(s, fs.F_OK, e => r(!e)))
 
 // https://stackoverflow.com/a/16637170
 function num2Fr(num) {
+  num = Math.round(num* 100) / 100;
   var parts = num.toString().split(".");
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  if (parts[1] && parts[1].length === 1) {
+    parts[1] = parts[1] + "0";
+  }
   return parts.join(",");
 }
 
